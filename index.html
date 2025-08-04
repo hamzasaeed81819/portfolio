@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hafiz Ameer Hamza - Portfolio</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+        color: #e0e0e0;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(20, 20, 20, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #00d4ff;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #00d4ff;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #00d4ff;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Banner Section */
+      .banner {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%2300d4ff" opacity="0.1"/></svg>');
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      .banner-content {
+        z-index: 2;
+        position: relative;
+      }
+
+      .banner h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #00d4ff, #0099cc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 20px #00d4ff;
+        }
+        to {
+          text-shadow: 0 0 30px #00d4ff, 0 0 40px #00d4ff;
+        }
+      }
+
+      .banner p {
+        font-size: 1.2rem;
+        color: #b0b0b0;
+        margin-bottom: 2rem;
+      }
+
+      .cta-button {
+        background: linear-gradient(135deg, #00d4ff, #0099cc);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 5rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        color: #00d4ff;
+      }
+
+      /* Skills Section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .skill-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        border-color: #00d4ff;
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+      }
+
+      .skill-card h3 {
+        color: #00d4ff;
+        margin-bottom: 1rem;
+      }
+
+      .skill-bar {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        height: 10px;
+        margin: 1rem 0;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #00d4ff, #0099cc);
+        border-radius: 10px;
+        transition: width 1s ease;
+      }
+
+      /* Work Experience */
+      .timeline {
+        position: relative;
+        margin: 2rem 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #00d4ff, #0099cc);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        width: 45%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 55%;
+      }
+
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .timeline-content h3 {
+        color: #00d4ff;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-content .company {
+        color: #00d4ff;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-content .date {
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Education & Certification */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: #00d4ff;
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+      }
+
+      .card h3 {
+        color: #00d4ff;
+        margin-bottom: 1rem;
+      }
+
+      .card .institution {
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      /* Project Cards */
+      .project-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .tech-tag {
+        background: rgba(0, 212, 255, 0.2);
+        color: #00d4ff;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+      }
+
+      .project-link {
+        color: #00d4ff;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        border: 2px solid #00d4ff;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .project-link:hover {
+        background: #00d4ff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Let's Connect */
+      .connect {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        text-align: center;
+        padding: 5rem 0;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .social-link {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #00d4ff;
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(0, 212, 255, 0.2);
+      }
+
+      .social-link:hover {
+        background: #00d4ff;
+        color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .banner h1 {
+          font-size: 2.5rem;
+        }
+
+        .timeline::before {
+          left: 20px;
+        }
+
+        .timeline-item {
+          width: calc(100% - 60px);
+          left: 60px !important;
+        }
+
+        .social-links {
+          flex-wrap: wrap;
+        }
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .typing {
+        overflow: hidden;
+        border-right: 3px solid #00d4ff;
+        white-space: nowrap;
+        animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #00d4ff;
+        }
+      }
+
+      .banner-summary {
+        color: #b0eaff;
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.15rem;
+        max-width: 600px;
+        text-align: center;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="#" class="logo">Hafiz Ameer Hamza</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#connect">Connect</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Banner Section -->
+    <section id="home" class="banner">
+      <div class="banner-content">
+        <h1>Hafiz Ameer Hamza</h1>
+        <p class="typing">
+          Web Developer | Data Engineer
+        </p>
+        <p class="banner-summary">
+          Experience in Database Management & WordPress Development, database administration and optimization.
+          Proficient in MySQL, Data Analysis, and Database Designing, ensuring secure and efficient data management. Expert in
+          WordPress development, including theme customization, plugin integration, and performance optimization. Strong
+          problem-solving skills with a focus on database security, backup solutions, and website scalability.
+        </p>
+        <a href="#connect" class="cta-button">Let's Connect</a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+  <h2 class="fade-in">Featured Projects</h2>
+  <div class="card-grid">
+
+    <!-- Alphabridge BD's Dashboard Power BI -->
+    <div class="card fade-in project-card">
+          <h3>Alphabridge Dashboard Power BI</h3>
+          <p>
+            This Power BI dashboard provides an interactive BD's analysis, 
+            enabling users to track BD's progress, identify top-performing 
+            closers & BD's, analyze regional performance, and monitor key Calls KPIs 
+            for data-driven decision-making.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">PowerBI</span>
+            <span class="tech-tag">DataVisualization</span>
+            <span class="tech-tag">BusinessIntelligence</span>
+            <span class="tech-tag">RevenueTracking</span>
+            <span class="tech-tag">DataDrivenInsights</span>
+          </div>
+          <a
+            href="https://github.com/hamzasaeed81819/alphabridge-dashboard.git"
+            class="project-link"
+            target="_blank"
+            >View on GitHub →</a
+          >
+        </div>
+
+    <!-- Sales Analysis Power BI -->
+    <div class="card fade-in project-card">
+      <h3>Sales Analysis Power BI</h3>
+      <p>
+        This Power BI dashboard provides an interactive sales analysis, enabling users to track revenue trends, identify top-performing products, analyze regional performance, and monitor key sales KPIs for data-driven decision-making.
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">PowerBI</span>
+        <span class="tech-tag">DataVisualization</span>
+        <span class="tech-tag">BusinessIntelligence</span>
+        <span class="tech-tag">RevenueTracking</span>
+        <span class="tech-tag">DataDrivenInsights</span>
+      </div>
+      <a href="https://github.com/hamzasaeed81819/sales-dashboard.git" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Smart Eye Android App -->
+    <div class="card fade-in project-card">
+      <h3>Smart Eye - Android App</h3>
+      <p>
+        A mobile app for real-time object detection and smart vision using TensorFlow Lite. Designed to help users visually interpret their surroundings using a phone camera.
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">Android Studio</span>
+        <span class="tech-tag">TensorFlow Lite</span>
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">Mobile Vision</span>
+      </div>
+      <a href="https://github.com/hamzasaeed81819/smart-eye-android.git" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Smart Eye Desktop App -->
+    <div class="card fade-in project-card">
+      <h3>Smart Eye - Desktop App</h3>
+      <p>
+        A mobile app for real-time object detection and smart vision using TensorFlow Lite. Designed to help users visually interpret their surroundings using a camera.
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">Pycharm</span>
+        <span class="tech-tag">TensorFlow Lite</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Computer Vision</span>
+      </div>
+      <a href="https://github.com/hamzasaeed81819/smart-eye-desktop.git" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- SQL Injection Prevention Web App -->
+    <div class="card fade-in project-card">
+      <h3>SQL Injection Prevention System</h3>
+      <p>
+        A simple web application demonstrating protection against SQL injection attacks using secure query handling in SQL with HTML/CSS frontend hosted on localhost.
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">SQL</span>
+        <span class="tech-tag">Security</span>
+      </div>
+      <a href="https://github.com/hamzasaeed81819/sql-injection-prevention.git" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Techno Chillers & Generators -->
+    <div class="card fade-in project-card">
+    <h3> Techno Chillers & Generators</h3>
+    <p>
+      Console-based inventory system in C++ supporting Dealer, Customer, and Employee roles with access control. Enables product management, purchasing, and secure stock operations using binary file storage.
+    </p>
+    <div class="tech-stack">
+      <span class="tech-tag">C++</span>
+      <span class="tech-tag">Console App</span>
+      <span class="tech-tag">Binary File Storage</span>
+      <span class="tech-tag">Role-based Access</span>
+    </div>
+    <a href="https://github.com/hamzasaeed81819/techno-chillers-generators.git" class="project-link" target="_blank">View on GitHub →</a>
+  </div>
+
+
+    <!-- Portfolio Website -->
+    <div class="card fade-in project-card">
+      <h3>Prime Power Traders - Portfolio Website</h3>
+      <p>
+        A responsive business portfolio website built using HTML, CSS, and Bootstrap. It showcases services, contact info, and company branding for Prime Power Traders.
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">Bootstrap</span>
+        <span class="tech-tag">Web Design</span>
+      </div>
+      <a href="https://github.com/hamzasaeed81819/prime-power-traders-portfolio.git" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Food Ordering System in C++ -->
+    <div class="card fade-in project-card">
+      <h3>Food Ordering System (C++)</h3>
+      <p>
+        A console-based food ordering system built in C++. Allows customers to place orders, calculate bills, and manage menu items in a simple terminal interface.
+      </p>
+      <div class="tech-stack">
+        <span class="tech-tag">C++</span>
+        <span class="tech-tag">OOP</span>
+        <span class="tech-tag">Console App</span>
+      </div>
+      <a href="https://github.com/hamzasaeed81819/food-ordering.git" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    
+
+  </div>
+</section>
+
+
+<!-- Skills Section -->
+<section id="skills" class="section">
+  <h2 class="fade-in">Skills</h2>
+  <div class="skills-grid">
+
+    <div class="skill-card fade-in">
+      <h3>Web Development</h3>
+      <p><strong>Technologies:</strong> HTML, CSS, JavaScript, PHP</p>
+      <p><strong>Frameworks/CMS:</strong> WordPress, CMS Platforms</p>
+      <p><strong>Focus Areas:</strong> Responsive design, theme customization, plugin integration, e-commerce, and membership sites</p>
+      <div class="skill-bar"><div class="skill-progress" data-width="92"></div></div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <h3>Database Management</h3>
+      <p><strong>Tools:</strong> SQL, Schemas, Datasets</p>
+      <p><strong>Skills:</strong> Schema design, query optimization, relational database concepts, data storage</p>
+      <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <h3>Data Warehousing & Modeling</h3>
+      <p><strong>Warehouses:</strong> Snowflake, BigQuery, Azure Synapse, Delta Lake</p>
+      <p><strong>Modeling:</strong> Star Schema, Snowflake Schema, OLAP/OLTP, Fact-Dimension Modeling</p>
+      <div class="skill-bar"><div class="skill-progress" data-width="93"></div></div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <h3>Data Security & Cybersecurity</h3>
+      <p><strong>Skills:</strong> Access control, logging & monitoring, system hardening, digital forensics</p>
+      <p><strong>Concepts:</strong> Risk management, security architecture, identity & access management</p>
+      <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <h3>Data Analysis & Visualization</h3>
+      <p><strong>Tools:</strong> Power BI, MS Excel</p>
+      <p><strong>Skills:</strong> Data modeling, dashboard creation, visual storytelling, KPIs, trend analysis</p>
+      <div class="skill-bar"><div class="skill-progress" data-width="89"></div></div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <h3>Tools & Software</h3>
+      <p><strong>Platforms:</strong> Web development tools, CMS platforms, Power BI, MS Office</p>
+      <p><strong>Skills:</strong> Productivity tools, data handling, and reporting utilities</p>
+      <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Work Experience -->
+<section id="experience" class="section">
+  <h2 class="fade-in">Work Experience</h2>
+  <div class="timeline">
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-content">
+        <h3>Network Operation Centre (NOC) Officer & Web Developer</h3>
+        <div class="company">King Revolution Pvt Ltd</div>
+        <div class="date">Jan 2023 - Sep 2023</div>
+        <p>• Tested and monitored network routes to ensure seamless connectivity and performance.</p>
+        <p>• Coordinated with vendors to resolve technical issues and maintain smooth operations.</p>
+        <p>• Updated and maintained company websites to support internal and external operations.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-content">
+        <h3>Data Information Security</h3>
+        <div class="company">Programmer's Force</div>
+        <div class="date">Nov 2023 - Dec 2023</div>
+        <p>• Assisted in monitoring and analyzing security events and incidents.</p>
+        <p>• Conducted system health checks and escalated potential security risks.</p>
+        <p>• Supported implementation of threat detection and security protocols.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-content">
+        <h3>Data Engineer</h3>
+        <div class="company">Alphabridge</div>
+        <div class="date">Jan 2024 - Present</div>
+        <p>• Assisted the team in monitoring and analyzing large datasets for performance improvements.</p>
+        <p>• Optimized data workflows and automated data processes for scalability.</p>
+        <p>• Supported the development of cloud-based data pipelines using modern technologies.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- Education -->
+    <section id="education" class="section">
+  <h2 class="fade-in">Education</h2>
+  <div class="card-grid">
+    <div class="card fade-in">
+      <h3>2014 - 2016<br>Matriculation</h3>
+      <p>
+        Moon Public School<br>
+        Focused on computer literacy, basic programming, and foundational topics like hardware, software, operating systems, and introductory networking.
+      </p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>2016 - 2018<br>F.Sc Pre-Engineering</h3>
+      <p>
+        Forman Christian College<br>
+        Developed strong analytical and problem-solving skills with a solid foundation in scientific and mathematical principles relevant to engineering disciplines.
+      </p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>2019 - 2023<br>B.S. in Computer Science</h3>
+      <p>
+        Superior University<br>
+        Gained expertise in programming, algorithms, data structures, and software engineering. 
+        Covered subjects such as computer architecture, cybersecurity, data science, and software development.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Certifications -->
+<section id="certifications" class="section">
+  <h2 class="fade-in">Certifications</h2>
+  <div class="card-grid">
+
+    <div class="card fade-in">
+      <h3>WordPress Website Development</h3>
+      <p class="institution">Practical Training</p>
+      <p>
+        Covered website creation, customization, theme and plugin development, e-commerce setup, and building membership sites with hands-on experience to build real-world proficiency.
+      </p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Certified Information Systems Security Professional (CISSP)</h3>
+      <p class="institution">(ISC)²</p>
+      <p>
+        Comprehensive coverage of security domains including risk management, asset security, identity and access management, network security, and software development security.
+      </p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Digital Forensic Cyber Security</h3>
+      <p class="institution">Cybersecurity Training Program</p>
+      <p>
+        Focused on access control, system hardening, network communication, and digital evidence analysis including identification, preservation, and reporting techniques.
+      </p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>EC-Council Certified Security Analyst (ECSA) – Practical</h3>
+      <p class="institution">EC-Council</p>
+      <p>
+        Assessed real-world penetration testing skills including vulnerability identification, exploitation, reporting, and security auditing through advanced lab simulations.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <!-- Let's Connect -->
+    <section id="connect" class="connect">
+      <div class="section">
+        <h2 class="fade-in">Let's Connect</h2>
+        <p class="fade-in">
+          Ready to work together? Let's create something amazing!
+        </p>
+        <div class="social-links">
+          <a
+            href="mailto:hamzasaeed81819@gmail.com"
+            class="social-link fade-in"
+            title="Email"
+            >📧</a
+          >
+          <a href="tel:+923066813855" class="social-link fade-in" title="Phone"
+            >📱</a
+          >
+          <a href="#" class="social-link fade-in" title="Location">📍</a>
+        </div>
+        <div style="margin-top: 2rem; color: #00d4ff; font-size: 1.1rem">
+          <div>Email: hamzasaeed81819@gmail.com</div>
+          <div>Phone: +923066813855</div>
+          <div>Location: Lahore Pakistan, 54000</div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Skill bar animation
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target.querySelector(".skill-progress");
+            if (progressBar) {
+              const width = progressBar.getAttribute("data-width");
+              setTimeout(() => {
+                progressBar.style.width = width + "%";
+              }, 300);
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".skill-card").forEach((card) => {
+        skillObserver.observe(card);
+      });
+
+      // Header background change on scroll
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(20, 20, 20, 0.98)";
+        } else {
+          header.style.background = "rgba(20, 20, 20, 0.95)";
+        }
+      });
+
+      // Typing effect
+      const typingElement = document.querySelector(".typing");
+      const text = "Web Developer | Data Engineer";
+      let index = 0;
+
+      function typeText() {
+        if (index < text.length) {
+          typingElement.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeText, 100);
+        }
+      }
+
+      // Start typing effect after page load
+      window.addEventListener("load", () => {
+        typingElement.textContent = "";
+        setTimeout(typeText, 1000);
+      });
+
+      // Particle effect for banner
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.style.position = "absolute";
+        particle.style.width = "4px";
+        particle.style.height = "4px";
+        particle.style.background = "#00d4ff";
+        particle.style.borderRadius = "50%";
+        particle.style.opacity = "0.5";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.top = "100%";
+        particle.style.pointerEvents = "none";
+
+        document.querySelector(".banner").appendChild(particle);
+
+        let position = 100;
+        const animation = setInterval(() => {
+          position -= 0.5;
+          particle.style.top = position + "%";
+
+          if (position < -10) {
+            clearInterval(animation);
+            particle.remove();
+          }
+        }, 16);
+      }
+
+      // Create particles periodically
+      setInterval(createParticle, 2000);
+
+      // Mobile menu toggle (for future enhancement)
+      const createMobileMenu = () => {
+        const nav = document.querySelector("nav");
+        const menuToggle = document.createElement("button");
+        menuToggle.innerHTML = "☰";
+        menuToggle.className = "mobile-menu-toggle";
+        menuToggle.style.display = "none";
+        menuToggle.style.background = "none";
+        menuToggle.style.border = "none";
+        menuToggle.style.color = "#00d4ff";
+        menuToggle.style.fontSize = "1.5rem";
+        menuToggle.style.cursor = "pointer";
+
+        nav.appendChild(menuToggle);
+
+        // Show/hide mobile menu on smaller screens
+        const checkScreenSize = () => {
+          if (window.innerWidth <= 768) {
+            menuToggle.style.display = "block";
+          } else {
+            menuToggle.style.display = "none";
+          }
+        };
+
+        window.addEventListener("resize", checkScreenSize);
+        checkScreenSize();
+      };
+
+      createMobileMenu();
+    </script>
+  </body>
+</html>
